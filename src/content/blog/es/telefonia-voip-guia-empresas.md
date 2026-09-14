@@ -2,7 +2,7 @@
 title: "Telefonía VoIP para empresas: qué es y cómo migrar sin perder tu numeración"
 metaDescription: "Guía sobre telefonía VoIP para empresas: qué es, qué necesitas para implantarla y cómo migrar desde una centralita tradicional sin perder tu número."
 excerpt: "La telefonía VoIP transmite las llamadas por internet en lugar de la red telefónica tradicional. Explicamos cómo funciona, qué necesitas para implantarla y cómo migrar tu numeración actual sin interrupciones."
-heroImage: "../../assets/shared/services/telefonia-1.jpg"
+heroImage: "../../../assets/shared/services/telefonia-1.jpg"
 heroImageAlt: "Panel de conexiones de una centralita telefónica VoIP en un armario de comunicaciones"
 publishDate: 2026-04-08
 relatedService: "telefonia-voip"

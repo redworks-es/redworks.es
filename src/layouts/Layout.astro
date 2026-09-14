@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import { swapLangInPath, getLangFromUrl } from '../i18n/utils';
 
 interface Props {
   title: string;
@@ -15,9 +16,17 @@ interface Props {
 }
 const { title, description, ogImage, type = 'website', schema = [] } = Astro.props;
 
+const lang = getLangFromUrl(Astro.url);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const alternateEsURL = new URL(swapLangInPath(Astro.url.pathname, 'es'), Astro.site);
+const alternateFrURL = new URL(swapLangInPath(Astro.url.pathname, 'fr'), Astro.site);
 const siteName = 'Redworks Solutions';
 const resolvedOgImage = ogImage ?? new URL('/og-default.jpg', Astro.site).toString();
+
+const organizationDescription =
+  lang === 'fr'
+    ? "Entreprise d'installation de systèmes de télécommunications, d'électricité et d'énergies renouvelables à Madrid, avec plus de 15 ans d'expérience."
+    : 'Empresa instaladora de sistemas de telecomunicaciones, electricidad y energías renovables en Madrid, con más de 15 años de experiencia.';
 
 const organizationSchema = {
   '@type': 'LocalBusiness',
@@ -26,8 +35,7 @@ const organizationSchema = {
   alternateName: 'Redworks',
   url: 'https://redworks.es',
   telephone: '+34910527499',
-  description:
-    'Empresa instaladora de sistemas de telecomunicaciones, electricidad y energías renovables en Madrid, con más de 15 años de experiencia.',
+  description: organizationDescription,
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Calle José Echegaray, 14, Edificio A2, planta 2, nave 8',
@@ -49,13 +57,16 @@ const jsonLd = {
 };
 ---
 
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="es" href={alternateEsURL} />
+    <link rel="alternate" hreflang="fr" href={alternateFrURL} />
+    <link rel="alternate" hreflang="x-default" href={alternateEsURL} />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -71,7 +82,7 @@ const jsonLd = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={resolvedOgImage} />
-    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale" content={lang === 'fr' ? 'fr_FR' : 'es_ES'} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />

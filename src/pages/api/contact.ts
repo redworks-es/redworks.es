@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { validateContactForm } from '../../lib/contactValidation';
 import { sendContactEmail } from '../../lib/email';
+import { ui, defaultLang, type Lang } from '../../i18n/ui';
 
 export const POST: APIRoute = async ({ request, locals }) => {
   const formData = await request.formData();
@@ -8,8 +9,9 @@ export const POST: APIRoute = async ({ request, locals }) => {
   for (const [key, value] of formData.entries()) {
     values[key] = String(value);
   }
+  const lang: Lang = values.lang === 'fr' ? 'fr' : defaultLang;
 
-  const result = validateContactForm(values);
+  const result = validateContactForm(values, lang);
   if (!result.valid) {
     return new Response(JSON.stringify({ ok: false, errors: result.errors }), {
       status: 400,
@@ -29,7 +31,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     });
   } catch {
     return new Response(
-      JSON.stringify({ ok: false, errors: ['No se ha podido enviar el mensaje. Inténtalo de nuevo o llámanos.'] }),
+      JSON.stringify({ ok: false, errors: [ui[lang]['contact.api.send_error']] }),
       { status: 502, headers: { 'Content-Type': 'application/json' } }
     );
   }

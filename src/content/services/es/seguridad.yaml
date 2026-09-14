@@ -4,7 +4,7 @@ navLabel: Sistema de seguridad
 title: Instalación de sistemas de seguridad en Madrid
 metaDescription: Instalación de sistemas de seguridad en Madrid ✅Procedimientos
   y tecnologías para proteger personas, propiedades, datos y activos ☎910527499
-heroImage: ./seguridad/hero.jpg
+heroImage: ../seguridad/hero.jpg
 heroTitle: Instalación de Sistemas de Seguridad en Madrid
 sections:
   - heading: Videovigilancia

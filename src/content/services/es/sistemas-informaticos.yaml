@@ -4,7 +4,7 @@ navLabel: Redes informáticas
 title: Instalación de Sistemas Informáticos en Madrid I Redworks
 metaDescription: Instalación de SISTEMAS INFORMÁTICOS en Madrid ✅Fibra Óptica,
   Cableados de Voz y Datos, Networking, Saneado y Documentación ☎️910527499
-heroImage: ./sistemas-informaticos/hero.jpg
+heroImage: ../sistemas-informaticos/hero.jpg
 heroTitle: Instalación de sistemas informáticos en Madrid
 sections:
   - heading: ¿Qué es el cableado estructurado?

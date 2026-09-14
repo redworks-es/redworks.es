@@ -5,18 +5,22 @@ import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import FAQ from '../components/FAQ.astro';
 import { faqPageSchema } from '../lib/faqSchema';
+import { useTranslations, localizePath } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
 
 interface Props {
   entry: CollectionEntry<'blog'>;
 }
 const { entry } = Astro.props;
+const [lang, slug] = entry.id.split('/') as [Lang, string];
+const t = useTranslations(lang);
 const { title, metaDescription, heroImage, heroImageAlt, publishDate, updatedDate, relatedService, faqs } =
   entry.data;
 const { Content } = await render(entry);
 
-const relatedServiceEntry = relatedService ? await getEntry('services', relatedService) : undefined;
+const relatedServiceEntry = relatedService ? await getEntry('services', `${lang}/${relatedService}`) : undefined;
 
-const postUrl = new URL(`/blog/${entry.id}/`, Astro.site).toString();
+const postUrl = new URL(localizePath(`/blog/${slug}/`, lang), Astro.site).toString();
 const heroImageUrl = new URL(heroImage.src, Astro.site).toString();
 
 const articleSchema = {
@@ -35,36 +39,38 @@ const articleSchema = {
 const breadcrumbSchema = {
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Inicio', item: new URL('/', Astro.site).toString() },
-    { '@type': 'ListItem', position: 2, name: 'Blog', item: new URL('/blog/', Astro.site).toString() },
+    { '@type': 'ListItem', position: 1, name: t('breadcrumb.inicio'), item: new URL(localizePath('/', lang), Astro.site).toString() },
+    { '@type': 'ListItem', position: 2, name: t('breadcrumb.blog'), item: new URL(localizePath('/blog/', lang), Astro.site).toString() },
     { '@type': 'ListItem', position: 3, name: title, item: postUrl },
   ],
 };
 
 const pageSchema = faqs && faqs.length > 0 ? [articleSchema, breadcrumbSchema, faqPageSchema(faqs)] : [articleSchema, breadcrumbSchema];
 
-const formattedDate = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', year: 'numeric' }).format(
-  publishDate
-);
+const formattedDate = new Intl.DateTimeFormat(lang === 'fr' ? 'fr-FR' : 'es-ES', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+}).format(publishDate);
 ---
 
 <Layout title={`${title} | Blog Redworks`} description={metaDescription} ogImage={heroImageUrl} type="article" schema={pageSchema}>
   <article class="post container">
-    <p class="eyebrow"><a href="/blog/">Blog</a></p>
+    <p class="eyebrow"><a href={localizePath('/blog/', lang)}>{t('breadcrumb.blog')}</a></p>
     <h1>{title}</h1>
-    <p class="meta">Publicado el {formattedDate}</p>
+    <p class="meta">{t('blog.published_on')} {formattedDate}</p>
     <Image src={heroImage} alt={heroImageAlt} width={1200} height={675} class="hero-image" />
     <div class="prose">
       <Content />
     </div>
 
-    {faqs && faqs.length > 0 && <FAQ items={faqs} title="Preguntas frecuentes" />}
+    {faqs && faqs.length > 0 && <FAQ items={faqs} title={t('faq.default_title')} />}
 
     {
       relatedServiceEntry && (
         <p class="related">
-          ¿Necesitas ayuda con esto? Conoce nuestro servicio de{' '}
-          <a href={`/${relatedServiceEntry.id}/`}>{relatedServiceEntry.data.navLabel.toLowerCase()}</a>.
+          {t('blog.related_prefix')}{' '}
+          <a href={localizePath(`/${relatedServiceEntry.id.split('/')[1]}/`, lang)}>{relatedServiceEntry.data.navLabel.toLowerCase()}</a>.
         </p>
       )
     }

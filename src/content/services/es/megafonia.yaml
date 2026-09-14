@@ -4,7 +4,7 @@ navLabel: Megafonía
 title: Instalación de sistemas MEGAFONÍA en Madrid
 metaDescription: Sistemas de megafonía en Madrid. Sistema de altavoces.
   Especializados en el sector industrial, educativo y retail. ☎️ 910527499
-heroImage: ./megafonia/hero.jpg
+heroImage: ../megafonia/hero.jpg
 heroTitle: Instalación de Sistemas de Megafonía en Madrid
 sections:
   - heading: ¿Qué es un sistema de megafonía y para qué se usa?

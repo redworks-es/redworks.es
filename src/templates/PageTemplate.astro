@@ -5,47 +5,90 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import { useTranslations, localizePath } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
 
 interface Props {
   entry: CollectionEntry<'pages'>;
 }
 const { entry } = Astro.props;
+const [lang, slug] = entry.id.split('/') as [Lang, string];
+const t = useTranslations(lang);
 const { title, metaDescription, heroTitle } = entry.data;
 const { Content } = await render(entry);
 
-const LEADERSHIP = [
-  {
-    photo: 'felipe',
-    name: 'Felipe Aguilar',
-    role: 'CEO y Fundador',
-    bio: 'Fundó Redworks en 2019 tras más de 15 años liderando proyectos de infraestructuras de telecomunicaciones. Sigue de cerca cada instalación como si fuera la primera.',
-  },
-  {
-    photo: 'maria',
-    name: 'María Pérez',
-    role: 'Directora de Estrategia Técnica',
-    bio: 'Diseña la solución técnica de cada proyecto, del primer boceto a la puesta en marcha. Especialista en redes de alta disponibilidad.',
-  },
-  {
-    photo: 'rocio',
-    name: 'Rocío Crespo',
-    role: 'Directora Financiera',
-    bio: 'Mantiene las cuentas y los proveedores bajo control para que cada proyecto llegue a tiempo y sin sorpresas.',
-  },
-  {
-    photo: 'jose-maria',
-    name: 'Jose María Soler',
-    role: 'Director Comercial',
-    bio: 'El primer punto de contacto con cada cliente nuevo. Traduce necesidades de negocio en proyectos técnicos concretos.',
-  },
-];
+const LEADERSHIP_BY_LANG = {
+  es: [
+    {
+      photo: 'felipe',
+      name: 'Felipe Aguilar',
+      role: 'CEO y Fundador',
+      bio: 'Fundó Redworks en 2019 tras más de 15 años liderando proyectos de infraestructuras de telecomunicaciones. Sigue de cerca cada instalación como si fuera la primera.',
+    },
+    {
+      photo: 'maria',
+      name: 'María Pérez',
+      role: 'Directora de Estrategia Técnica',
+      bio: 'Diseña la solución técnica de cada proyecto, del primer boceto a la puesta en marcha. Especialista en redes de alta disponibilidad.',
+    },
+    {
+      photo: 'rocio',
+      name: 'Rocío Crespo',
+      role: 'Directora Financiera',
+      bio: 'Mantiene las cuentas y los proveedores bajo control para que cada proyecto llegue a tiempo y sin sorpresas.',
+    },
+    {
+      photo: 'jose-maria',
+      name: 'Jose María Soler',
+      role: 'Director Comercial',
+      bio: 'El primer punto de contacto con cada cliente nuevo. Traduce necesidades de negocio en proyectos técnicos concretos.',
+    },
+  ],
+  fr: [
+    {
+      photo: 'felipe',
+      name: 'Felipe Aguilar',
+      role: 'PDG et Fondateur',
+      bio: "A fondé Redworks en 2019 après plus de 15 ans à la tête de projets d'infrastructures de télécommunications. Il suit de près chaque installation comme s'il s'agissait de la première.",
+    },
+    {
+      photo: 'maria',
+      name: 'María Pérez',
+      role: 'Directrice de la Stratégie Technique',
+      bio: "Conçoit la solution technique de chaque projet, de la première esquisse à la mise en service. Spécialiste des réseaux à haute disponibilité.",
+    },
+    {
+      photo: 'rocio',
+      name: 'Rocío Crespo',
+      role: 'Directrice Financière',
+      bio: 'Garde les comptes et les fournisseurs sous contrôle pour que chaque projet arrive à temps et sans surprises.',
+    },
+    {
+      photo: 'jose-maria',
+      name: 'Jose María Soler',
+      role: 'Directeur Commercial',
+      bio: 'Le premier point de contact avec chaque nouveau client. Il traduit les besoins métier en projets techniques concrets.',
+    },
+  ],
+} as const;
 
-const TECHNICAL_TEAM = [
-  { photo: 'ibrahim', name: 'Ibrahim Benzian', specialty: 'Cableado estructurado y fibra óptica' },
-  { photo: 'angel', name: 'Ángel Herranz', specialty: 'Sistemas de seguridad y videovigilancia' },
-  { photo: 'chema', name: 'Chema Cerezo', specialty: 'Electricidad de baja tensión y energía solar' },
-  { photo: 'javier', name: 'Javier Mesías', specialty: 'Redes wifi y sistemas audiovisuales' },
-];
+const TECHNICAL_TEAM_BY_LANG = {
+  es: [
+    { photo: 'ibrahim', name: 'Ibrahim Benzian', specialty: 'Cableado estructurado y fibra óptica' },
+    { photo: 'angel', name: 'Ángel Herranz', specialty: 'Sistemas de seguridad y videovigilancia' },
+    { photo: 'chema', name: 'Chema Cerezo', specialty: 'Electricidad de baja tensión y energía solar' },
+    { photo: 'javier', name: 'Javier Mesías', specialty: 'Redes wifi y sistemas audiovisuales' },
+  ],
+  fr: [
+    { photo: 'ibrahim', name: 'Ibrahim Benzian', specialty: 'Câblage structuré et fibre optique' },
+    { photo: 'angel', name: 'Ángel Herranz', specialty: 'Systèmes de sécurité et vidéosurveillance' },
+    { photo: 'chema', name: 'Chema Cerezo', specialty: 'Électricité basse tension et énergie solaire' },
+    { photo: 'javier', name: 'Javier Mesías', specialty: 'Réseaux wifi et systèmes audiovisuels' },
+  ],
+} as const;
+
+const LEADERSHIP = LEADERSHIP_BY_LANG[lang];
+const TECHNICAL_TEAM = TECHNICAL_TEAM_BY_LANG[lang];
 
 const teamPhotos = import.meta.glob<{ default: ImageMetadata }>('../assets/shared/team/*.jpg', {
   eager: true,
@@ -64,21 +107,21 @@ const clientPhotos = import.meta.glob<{ default: ImageMetadata }>('../assets/sha
 });
 const clientLogos = Object.values(clientPhotos).map((mod) => mod.default);
 
-const services = entry.id === 'telecomunicaciones' ? await getCollection('services') : [];
+const services = slug === 'telecomunicaciones' ? await getCollection('services', ({ id }) => id.startsWith(`${lang}/`)) : [];
 const telecomServices = services
   .filter((s) => s.data.category === 'telecomunicaciones')
   .sort((a, b) => a.data.order - b.data.order);
 
-const pageUrl = new URL(`/${entry.id}/`, Astro.site).toString();
+const pageUrl = new URL(localizePath(`/${slug}/`, lang), Astro.site).toString();
 const breadcrumbSchema = {
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Inicio', item: new URL('/', Astro.site).toString() },
+    { '@type': 'ListItem', position: 1, name: t('breadcrumb.inicio'), item: new URL(localizePath('/', lang), Astro.site).toString() },
     { '@type': 'ListItem', position: 2, name: heroTitle, item: pageUrl },
   ],
 };
 const aboutPageSchema =
-  entry.id === 'quienes-somos'
+  slug === 'quienes-somos'
     ? {
         '@type': 'AboutPage',
         url: pageUrl,
@@ -102,10 +145,10 @@ const pageSchema = aboutPageSchema ? [breadcrumbSchema, aboutPageSchema] : [brea
   </Hero>
 
   {
-    entry.id === 'quienes-somos' && (
+    slug === 'quienes-somos' && (
       <section class="container team">
-        <p class="eyebrow">Las personas detrás de Redworks</p>
-        <h2>Nuestro equipo</h2>
+        <p class="eyebrow">{t('team.eyebrow')}</p>
+        <h2>{t('team.heading')}</h2>
         <div class="leadership-grid">
           {leadershipWithPhotos.map((member) => (
             <div class="leader-card">
@@ -121,7 +164,7 @@ const pageSchema = aboutPageSchema ? [breadcrumbSchema, aboutPageSchema] : [brea
           ))}
         </div>
 
-        <p class="eyebrow technical-eyebrow">Equipo técnico</p>
+        <p class="eyebrow technical-eyebrow">{t('team.technical_eyebrow')}</p>
         <div class="technical-grid">
           {technicalWithPhotos.map((member) => (
             <div class="tech-card">
@@ -135,28 +178,31 @@ const pageSchema = aboutPageSchema ? [breadcrumbSchema, aboutPageSchema] : [brea
         </div>
 
         <p class="closing">
-          Para nosotros siempre <em>"prima el cliente y su necesidad"</em> — esa es, en una frase, nuestra
-          filosofía de trabajo.
+          {lang === 'fr' ? (
+            <>Chez nous, c'est toujours <em>«&nbsp;{t('team.closing_quote')}&nbsp;»</em> — {t('team.closing_rest')}</>
+          ) : (
+            <>Para nosotros siempre <em>"{t('team.closing_quote')}"</em> — {t('team.closing_rest')}</>
+          )}
         </p>
       </section>
     )
   }
 
   {
-    entry.id === 'clientes' && (
+    slug === 'clientes' && (
       <div class="container client-logos">
         {clientLogos.map((logo, i) => (
-          <Image src={logo} alt={`Logo de empresa cliente de Redworks Solutions (${i + 1})`} width={120} height={120} loading="lazy" />
+          <Image src={logo} alt={`${t('clients.logo_alt')} (${i + 1})`} width={120} height={120} loading="lazy" />
         ))}
       </div>
     )
   }
 
   {
-    entry.id === 'telecomunicaciones' && (
+    slug === 'telecomunicaciones' && (
       <section class="container telecom-grid">
         {telecomServices.map((service) => (
-          <a class="service-link" href={`/${service.id}/`}>
+          <a class="service-link" href={localizePath(`/${service.id.split('/')[1]}/`, lang)}>
             {service.data.navLabel}
           </a>
         ))}

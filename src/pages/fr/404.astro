@@ -1,0 +1,23 @@
+---
+export const prerender = true;
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Page introuvable | Redworks" description="La page que vous recherchez n'existe pas.">
+  <section class="container not-found">
+    <h1>404</h1>
+    <p>La page que vous recherchez n&rsquo;existe pas ou a été déplacée.</p>
+    <a class="button" href="/fr/">Retour à l&rsquo;accueil</a>
+  </section>
+</Layout>
+
+<style>
+  .not-found {
+    padding: 5rem 0;
+    text-align: center;
+  }
+  .not-found h1 {
+    font-size: 4rem;
+    color: var(--blue);
+  }
+</style>

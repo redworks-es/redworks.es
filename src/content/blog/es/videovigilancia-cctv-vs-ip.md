@@ -2,7 +2,7 @@
 title: "Videovigilancia CCTV analógica vs. IP: qué diferencia hay y cuál elegir"
 metaDescription: "Comparamos cámaras CCTV analógicas e IP para empresas: diferencias de calidad, cableado, coste e integración, y cómo elegir la más adecuada."
 excerpt: "Las cámaras analógicas y las cámaras IP resuelven el mismo problema —vigilar unas instalaciones— de forma distinta. Comparamos calidad de imagen, cableado, coste e integración para ayudarte a elegir."
-heroImage: "../../assets/shared/services/seguridad03-redworks.jpg"
+heroImage: "../../../assets/shared/services/seguridad03-redworks.jpg"
 heroImageAlt: "Cámara de videovigilancia CCTV instalada en el exterior de unas instalaciones comerciales"
 publishDate: 2026-05-06
 relatedService: "seguridad"

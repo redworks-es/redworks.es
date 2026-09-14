@@ -14,4 +14,18 @@ describe('Footer', () => {
     expect(html).toContain('/terminos-y-condiciones/');
     expect(html).toMatch(/Copyright \d{4} Redworks Solutions/);
   });
+
+  it('renders French labels and /fr-prefixed legal links on a /fr/ request', async () => {
+    const container = await AstroContainer.create();
+    const html = await container.renderToString(Footer, {
+      request: new Request('https://redworks.es/fr/'),
+    });
+
+    expect(html).toContain('Adresse');
+    expect(html).toContain('/fr/accesibilidad/');
+    expect(html).toContain('/fr/politica-de-privacidad/');
+    expect(html).toContain('/fr/terminos-y-condiciones/');
+    expect(html).toMatch(/Copyright \d{4} Redworks Solutions/);
+    expect(html).toContain('Tous droits réservés.');
+  });
 });

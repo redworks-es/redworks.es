@@ -2,7 +2,7 @@
 title: "Redes wifi empresariales: claves para una cobertura fiable en oficinas y naves"
 metaDescription: "Cómo diseñar una red wifi empresarial con cobertura fiable: puntos de acceso, planificación de señal, seguridad y errores habituales a evitar."
 excerpt: "Una red wifi empresarial fiable no consiste en poner varios routers domésticos: requiere planificación de cobertura, puntos de acceso profesionales y una configuración de seguridad adecuada al número de usuarios."
-heroImage: "../../assets/shared/services/sistema-wifi03.jpg"
+heroImage: "../../../assets/shared/services/sistema-wifi03.jpg"
 heroImageAlt: "Punto de acceso wifi profesional instalado en el techo de una oficina"
 publishDate: 2026-06-02
 relatedService: "redes-wifi"

@@ -50,7 +50,9 @@ const SERVICE_CODES: Record<string, string> = {
   'instalacion-electrica-de-baja-tension': 'BT',
 };
 
-const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const services = (await getCollection('services', ({ id }) => id.startsWith('es/'))).sort(
+  (a, b) => a.data.order - b.data.order
+);
 
 const whyRedworks = [
   {
@@ -90,9 +92,9 @@ const whyRedworks = [
           <a
             class="node"
             data-category={service.data.category}
-            href={`/${service.id}/`}
+            href={`/${service.id.split('/')[1]}/`}
           >
-            <span class="code">{SERVICE_CODES[service.id] ?? '—'}</span>
+            <span class="code">{SERVICE_CODES[service.id.split('/')[1]] ?? '—'}</span>
             <span class="label">{service.data.navLabel}</span>
           </a>
         ))

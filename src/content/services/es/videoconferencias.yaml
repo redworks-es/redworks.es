@@ -5,7 +5,7 @@ title: Sistema Videoconferencia para hogares y empresas
 metaDescription: Ofrecemos sistemas de videoconferencia para hogares y empresas,
   buscando simplificar las interacciones con elevados estándares de calidad.
   ☎️910527499
-heroImage: ./videoconferencias/hero.jpg
+heroImage: ../videoconferencias/hero.jpg
 heroTitle: Sistemas de Videoconferencia para Hogares y Empresas
 sections:
   - heading: ¿Qué Ofrecemos con las Videoconferencias?

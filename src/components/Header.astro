@@ -1,44 +1,76 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/shared/logo.png';
+import { useTranslations, localizePath, swapLangInPath, getLangFromUrl } from '../i18n/utils';
 
-const SERVICES = [
-  { label: 'Telecomunicaciones', href: '/telecomunicaciones/' },
-  { label: 'Telefonía VoIP', href: '/telefonia-voip/' },
-  { label: 'Audiovisuales', href: '/audiovisuales/' },
-  { label: 'Videoconferencias', href: '/videoconferencias/' },
-  { label: 'Megafonía', href: '/megafonia/' },
-  { label: 'Sala de conferencias', href: '/conferencias/' },
-  { label: 'Redes informáticas', href: '/sistemas-informaticos/' },
-  { label: 'Redes wifi', href: '/redes-wifi/' },
-  { label: 'Sistema de seguridad', href: '/seguridad/' },
-  { label: 'Electricidad', href: '/electricidad/' },
-  { label: 'Paneles solares', href: '/paneles/' },
-  { label: 'Instalación eléctrica de baja tensión', href: '/instalacion-electrica-de-baja-tension/' },
-];
+const SERVICES_BY_LANG = {
+  es: [
+    { label: 'Telecomunicaciones', slug: 'telecomunicaciones' },
+    { label: 'Telefonía VoIP', slug: 'telefonia-voip' },
+    { label: 'Audiovisuales', slug: 'audiovisuales' },
+    { label: 'Videoconferencias', slug: 'videoconferencias' },
+    { label: 'Megafonía', slug: 'megafonia' },
+    { label: 'Sala de conferencias', slug: 'conferencias' },
+    { label: 'Redes informáticas', slug: 'sistemas-informaticos' },
+    { label: 'Redes wifi', slug: 'redes-wifi' },
+    { label: 'Sistema de seguridad', slug: 'seguridad' },
+    { label: 'Electricidad', slug: 'electricidad' },
+    { label: 'Paneles solares', slug: 'paneles' },
+    { label: 'Instalación eléctrica de baja tensión', slug: 'instalacion-electrica-de-baja-tension' },
+  ],
+  fr: [
+    { label: 'Télécommunications', slug: 'telecomunicaciones' },
+    { label: 'Téléphonie VoIP', slug: 'telefonia-voip' },
+    { label: 'Audiovisuel', slug: 'audiovisuales' },
+    { label: 'Visioconférences', slug: 'videoconferencias' },
+    { label: 'Sonorisation', slug: 'megafonia' },
+    { label: 'Salle de conférence', slug: 'conferencias' },
+    { label: 'Réseaux informatiques', slug: 'sistemas-informaticos' },
+    { label: 'Réseaux wifi', slug: 'redes-wifi' },
+    { label: 'Système de sécurité', slug: 'seguridad' },
+    { label: 'Électricité', slug: 'electricidad' },
+    { label: 'Panneaux solaires', slug: 'paneles' },
+    { label: 'Installation électrique basse tension', slug: 'instalacion-electrica-de-baja-tension' },
+  ],
+} as const;
 
-const PAGES = [
-  { label: 'Clientes', href: '/clientes/' },
-  { label: 'Quiénes somos', href: '/quienes-somos/' },
-  { label: 'Blog', href: '/blog/' },
-  { label: 'Contacto', href: '/contacto/' },
-];
+const PAGES_BY_LANG = {
+  es: [
+    { label: 'Clientes', slug: 'clientes' },
+    { label: 'Quiénes somos', slug: 'quienes-somos' },
+    { label: 'Blog', slug: 'blog' },
+    { label: 'Contacto', slug: 'contacto' },
+  ],
+  fr: [
+    { label: 'Clients', slug: 'clientes' },
+    { label: 'Qui sommes-nous', slug: 'quienes-somos' },
+    { label: 'Blog', slug: 'blog' },
+    { label: 'Contact', slug: 'contacto' },
+  ],
+} as const;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const SERVICES = SERVICES_BY_LANG[lang].map((item) => ({ label: item.label, href: localizePath(`/${item.slug}/`, lang) }));
+const PAGES = PAGES_BY_LANG[lang].map((item) => ({ label: item.label, href: localizePath(`/${item.slug}/`, lang) }));
 
 const currentPath = Astro.url.pathname;
 const isActive = (href: string) => currentPath === href;
 const isInServices = SERVICES.some((item) => isActive(item.href));
+const otherLang = lang === 'es' ? 'fr' : 'es';
+const otherLangHref = swapLangInPath(currentPath, otherLang);
 ---
 
 <header class="site-header">
   <div class="container bar">
-    <a href="/" class="logo">
+    <a href={localizePath('/', lang)} class="logo">
       <Image src={logo} alt="Redworks Solutions" width={170} height={41} />
     </a>
 
-    <nav class="main-nav" aria-label="Principal">
+    <nav class="main-nav" aria-label={t('nav.aria_principal')}>
       <ul class="main-menu">
         <li class="has-dropdown">
-          <span class:list={{ active: isInServices }}>Servicios</span>
+          <span class:list={{ active: isInServices }}>{t('nav.services')}</span>
           <ul class="dropdown">
             {
               SERVICES.map((item) => (
@@ -63,14 +95,19 @@ const isInServices = SERVICES.some((item) => isActive(item.href));
       </ul>
     </nav>
 
-    <a class="phone" href="tel:+34910527499">910 52 74 99</a>
+    <div class="side-actions">
+      <a class="lang-switch" href={otherLangHref} hreflang={otherLang} aria-label={t('language.switch_label')}>
+        {otherLang.toUpperCase()}
+      </a>
+      <a class="phone" href="tel:+34910527499">910 52 74 99</a>
+    </div>
 
     <details class="mobile-nav">
-      <summary aria-label="Abrir menú">
+      <summary aria-label={t('nav.open_menu')}>
         <span></span><span></span><span></span>
       </summary>
       <ul class="mobile-menu">
-        <li class="mobile-heading">Servicios</li>
+        <li class="mobile-heading">{t('nav.services')}</li>
         {
           SERVICES.map((item) => (
             <li>
@@ -80,7 +117,7 @@ const isInServices = SERVICES.some((item) => isActive(item.href));
             </li>
           ))
         }
-        <li class="mobile-heading">Empresa</li>
+        <li class="mobile-heading">{t('nav.mobile_company')}</li>
         {
           PAGES.map((item) => (
             <li>
@@ -90,6 +127,10 @@ const isInServices = SERVICES.some((item) => isActive(item.href));
             </li>
           ))
         }
+        <li class="mobile-heading">{t('language.switch_label')}</li>
+        <li>
+          <a href={otherLangHref} hreflang={otherLang}>{otherLang.toUpperCase()}</a>
+        </li>
       </ul>
     </details>
   </div>
@@ -180,6 +221,12 @@ const isInServices = SERVICES.some((item) => isActive(item.href));
     font-weight: 600;
     background: var(--paper);
   }
+  .side-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
   .phone {
     font-family: var(--font-mono);
     font-weight: 500;
@@ -189,6 +236,21 @@ const isInServices = SERVICES.some((item) => isActive(item.href));
   }
   .phone:hover {
     color: var(--blue);
+  }
+  .lang-switch {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    border: 1px solid var(--wire);
+    border-radius: var(--radius);
+    padding: 0.25rem 0.55rem;
+  }
+  .lang-switch:hover {
+    color: var(--blue);
+    border-color: var(--blue);
+    text-decoration: none;
   }
 
   .mobile-nav {

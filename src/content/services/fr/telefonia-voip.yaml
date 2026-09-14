@@ -1,0 +1,57 @@
+order: 2
+category: telecomunicaciones
+navLabel: Téléphonie VoIP
+title: >-
+  Services de TÉLÉPHONIE VOIP à Madrid
+metaDescription: >-
+  Services de Téléphonie VoIP à Madrid ✅ Efficace ✅ Flexible ✅ Personnel
+  Hautement Qualifié ☎️910527499
+heroImage: ../telefonia-voip/hero.jpg
+heroTitle: >-
+  Entreprise de Téléphonie VoIP à Madrid
+sections:
+  - heading: "Qu'est-ce que la téléphonie VoIP ?"
+    body: >-
+      La téléphonie VoIP transmet les appels vocaux numérisés via internet
+      plutôt que par le réseau téléphonique traditionnel, ce qui permet de
+      gérer les appels depuis des téléphones IP, ordinateurs ou mobiles avec
+      un seul standard. Nous installons, configurons et formons votre équipe
+      à l'utilisation de toute la solution, y compris la portabilité de votre
+      numérotation actuelle.
+    image: ../telefonia-voip/section-0.jpg
+  - heading: Services téléphoniques
+    body: >-
+      Toutes les technologies pour tirer le meilleur parti de vos
+      communications. Chez Redworks, nous travaillons toujours avec les
+      meilleures technologies pour offrir un service personnalisé et
+      actualisé, en tirant parti des avancées technologiques du moment pour
+      rester à la pointe.
+    image: ../telefonia-voip/section-1.jpg
+  - heading: Câblages et infrastructures
+    body: >-
+      Un câblage correct est la base du bon fonctionnement des installations.
+      Un câblage de qualité est indispensable pour réaliser une installation
+      correcte de tout système de communications.
+    image: ../telefonia-voip/section-2.jpg
+whyChooseUs:
+  - icon: user-tie
+    title: Expérience en télécommunications
+    body: >-
+      Avec plus de 15 ans d'expérience dans le secteur des
+      télécommunications, nous sommes experts dans la fourniture de solutions
+      téléphoniques efficaces et de haute qualité pour les entreprises et les
+      particuliers.
+  - icon: check-circle
+    title: Technologie de pointe
+    body: >-
+      Chez Redworks Solutions, nous restons à la pointe des dernières
+      technologies dans le domaine des communications. Nos solutions
+      s'appuient sur la technologie la plus avancée pour garantir des
+      performances optimales et une expérience sans accroc.
+  - icon: check-circle
+    title: Accompagnement personnalisé
+    body: >-
+      Nous comprenons que les besoins peuvent varier. C'est pourquoi nous
+      proposons des solutions adaptées à vos exigences spécifiques. Nous
+      sommes là pour vous apporter le soutien dont vous avez besoin à chaque
+      étape du processus.

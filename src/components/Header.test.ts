@@ -14,4 +14,17 @@ describe('Header', () => {
     expect(html).toContain('Quiénes somos');
     expect(html).toContain('Contacto');
   });
+
+  it('renders French labels and /fr-prefixed links on a /fr/ request', async () => {
+    const container = await AstroContainer.create();
+    const html = await container.renderToString(Header, {
+      request: new Request('https://redworks.es/fr/'),
+    });
+
+    expect(html).toContain('tel:+34910527499');
+    expect(html).toContain('/fr/electricidad/');
+    expect(html).toContain('/fr/instalacion-electrica-de-baja-tension/');
+    expect(html).toContain('Qui sommes-nous');
+    expect(html).toContain('Contact');
+  });
 });
