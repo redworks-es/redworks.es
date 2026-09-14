@@ -2,10 +2,10 @@
 export const prerender = true;
 
 import { getCollection } from 'astro:content';
-import BlogPostTemplate from '../../templates/BlogPostTemplate.astro';
+import BlogPostTemplate from '../../../templates/BlogPostTemplate.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ id }) => id.startsWith('es/'));
+  const posts = await getCollection('blog', ({ id }) => id.startsWith('fr/'));
   return posts.map((entry) => ({ params: { slug: entry.id.split('/')[1] }, props: { entry } }));
 }
 

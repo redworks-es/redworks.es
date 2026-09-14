@@ -1,50 +1,51 @@
 ---
 export const prerender = true;
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
 ---
 
 <Layout
-  title="Contacto | Redworks"
-  description="Contacta con Redworks Solutions para tus proyectos de telecomunicaciones y electricidad en Madrid. Llámanos al 910 52 74 99."
+  title="Contact | Redworks"
+  description="Contactez Redworks Solutions pour vos projets de télécommunications et d'électricité à Madrid. Appelez-nous au 910 52 74 99."
 >
-  <Hero title="Contacta con nosotros" eyebrow="Presupuesto sin compromiso">
-    ¿Tienes un proyecto de telecomunicaciones, electricidad o energías renovables? Cuéntanos qué necesitas.
+  <Hero title="Contactez-nous" eyebrow="Devis sans engagement">
+    Vous avez un projet de télécommunications, d'électricité ou d'énergies renouvelables ? Dites-nous ce dont
+    vous avez besoin.
   </Hero>
 
   <section class="container contact-grid">
     <div class="contact-info">
-      <p class="label">Llámanos</p>
+      <p class="label">Appelez-nous</p>
       <p class="value"><a href="tel:+34910527499">910 52 74 99</a></p>
-      <p class="label">Dirección</p>
-      <p class="value">Calle José Echegaray, 14<br />Edificio A2, planta 2, nave 8</p>
+      <p class="label">Adresse</p>
+      <p class="value">Calle José Echegaray, 14<br />Edificio A2, planta 2, nave 8<br />Madrid, Espagne</p>
     </div>
 
     <form id="contact-form" method="POST" action="/api/contact">
-      <input type="hidden" name="lang" value="es" />
-      <label for="name">Nombre</label>
+      <input type="hidden" name="lang" value="fr" />
+      <label for="name">Nom</label>
       <input id="name" name="name" type="text" required />
 
-      <label for="email">Email</label>
+      <label for="email">E-mail</label>
       <input id="email" name="email" type="email" required />
 
-      <label for="phone">Teléfono</label>
+      <label for="phone">Téléphone</label>
       <input id="phone" name="phone" type="tel" required />
 
-      <label for="message">Mensaje</label>
+      <label for="message">Message</label>
       <textarea id="message" name="message" rows="5" required></textarea>
 
       <label class="checkbox">
         <input type="checkbox" name="accepted" required />
-        He leído y acepto la <a href="/politica-de-privacidad/">política de privacidad</a>.
+        J&rsquo;ai lu et j&rsquo;accepte la <a href="/fr/politica-de-privacidad/">politique de confidentialité</a>.
       </label>
 
-      <button class="button" type="submit">Enviar</button>
+      <button class="button" type="submit">Envoyer</button>
       <p id="contact-form-status" role="status"></p>
     </form>
   </section>
 
-  <script src="../scripts/contact-form.ts"></script>
+  <script src="../../scripts/contact-form.ts"></script>
 </Layout>
 
 <style>

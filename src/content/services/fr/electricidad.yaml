@@ -1,0 +1,53 @@
+order: 10
+category: electricidad
+navLabel: Électricité
+title: >-
+  Électricité et Énergies Renouvelables à Madrid
+metaDescription: >-
+  Entreprise d'installation d'Électricité et d'Énergies Renouvelables à
+  Madrid ✅Installation électrique basse tension, panneaux solaires
+  ☎️910527499
+heroImage: ../electricidad/hero.jpg
+heroTitle: >-
+  Entreprise d'Installation d'Électricité et d'Énergies Renouvelables à Madrid
+sections:
+  - heading: Installations électriques basse tension pour entreprises
+    body: >-
+      Nous concevons, réalisons et homologuons des installations électriques
+      basse tension pour bureaux, commerces et entrepôts industriels. En tant
+      qu'entreprise installatrice agréée par la Communauté de Madrid, nous
+      assurons le montage, la maintenance et les démarches du certificat
+      électrique conformément au Règlement Électrotechnique Basse Tension.
+    image: ../electricidad/section-0.jpg
+  - heading: Énergie Renouvelable
+    body: >-
+      Engagés pour l'efficacité énergétique et la durabilité, nous disposons
+      chez Redworks des connaissances et des capacités nécessaires pour
+      réaliser des installations de panneaux photovoltaïques. Nos
+      professionnels apportent un conseil personnalisé à chaque besoin, en
+      réalisant une conception sur mesure pour chaque client. Notre expérience
+      nous permet également de réaliser des révisions et des contrôles du
+      fonctionnement des installations, afin de garantir le meilleur
+      rendement et la meilleure efficacité possibles des équipements.
+    image: ../electricidad/section-1.jpg
+whyChooseUs:
+  - icon: user-tie
+    title: Expérience et professionnalisme
+    body: >-
+      Notre équipe hautement spécialisée compte plus de 15 ans d'expérience
+      dans le secteur électrique et des énergies renouvelables. Faites
+      confiance à notre savoir-faire pour obtenir des solutions fiables et
+      efficaces.
+  - icon: balance-scale
+    title: Engagement envers la durabilité
+    body: >-
+      Chez Redworks Solutions, nous croyons en un avenir plus durable. Nos
+      installations d'énergies renouvelables vous aident non seulement à
+      réduire vos coûts, mais contribuent aussi à préserver l'environnement
+      en diminuant votre empreinte carbone.
+  - icon: check-circle
+    title: Approche personnalisée
+    body: >-
+      Nous comprenons que chaque projet est unique. Notre équipe travaille
+      avec vous pour concevoir des solutions sur mesure parfaitement adaptées
+      à vos besoins énergétiques. Votre satisfaction est notre moteur.

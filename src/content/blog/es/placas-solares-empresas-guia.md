@@ -2,7 +2,7 @@
 title: "Placas solares para empresas: ahorro, subvenciones y amortización"
 metaDescription: "Guía práctica sobre autoconsumo fotovoltaico para empresas en Madrid: cómo funciona, qué ahorro puede suponer y qué ayudas existen actualmente."
 excerpt: "El autoconsumo fotovoltaico permite a una empresa generar parte de su propia electricidad y reducir la factura eléctrica. Repasamos cómo funciona, qué influye en el ahorro y qué pasos hay que seguir para instalarlo."
-heroImage: "../../assets/shared/services/placas-fotovoltaicas-destacada.jpg"
+heroImage: "../../../assets/shared/services/placas-fotovoltaicas-destacada.jpg"
 heroImageAlt: "Placas solares fotovoltaicas instaladas sobre la cubierta de una nave industrial"
 publishDate: 2026-03-04
 relatedService: "paneles"

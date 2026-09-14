@@ -4,7 +4,7 @@ navLabel: Sala de conferencias
 title: Sistema de sonido para sala de conferencias Madrid
 metaDescription: Especialistas en la instalación de sistema de sonido para sala
   de conferencias en Madrid. Equipos de traducción simultánea. ☎️ 910527499
-heroImage: ./conferencias/hero.jpg
+heroImage: ../conferencias/hero.jpg
 heroTitle: Sistema de Sonido y Equipos de Traducción Simultánea para Sala de
   Conferencias en Madrid
 sections:
@@ -42,7 +42,7 @@ sections:
       transmisión de información de un dispositivo a otro. Los sistemas
       inalámbricos son una parte integral de la vida cotidiana, facilitando la
       conectividad y la comunicación de manera más flexible y conveniente.
-    image: ./conferencias/section-4.jpg
+    image: ../conferencias/section-4.jpg
   - heading: Sistemas Integrados en Mobiliario
     body: Los sistemas integrados en mobiliario se refieren a la incorporación de
       tecnología y funcionalidades avanzadas dentro de los elementos de
@@ -53,7 +53,7 @@ sections:
       mejora la estética y funcionalidad del espacio. Estos elementos buscan
       facilitar la vida diaria y hacer que los entornos sean más inteligentes y
       cómodos.
-    image: ./conferencias/section-5.jpg
+    image: ../conferencias/section-5.jpg
   - heading: Sistema de Votación
     body: Los sistemas de votación se refieren a los métodos y procedimientos
       utilizados para que las personas expresen sus preferencias o elecciones en
@@ -61,14 +61,14 @@ sections:
       directivas, encuestas, entre otros. La elección de un sistema de votación
       puede influir en la representatividad, la estabilidad y la percepción de
       equidad de un proceso electoral o de toma de decisiones.
-    image: ./conferencias/section-6.jpg
+    image: ../conferencias/section-6.jpg
   - heading: Equipos para Reuniones
     body: Los equipos para reuniones son herramientas y tecnologías diseñadas para
       facilitar la colaboración, la comunicación y la interacción entre personas
       que participan en reuniones, ya sea de manera presencial o virtual. Estos
       equipos pueden incluir una variedad de dispositivos y software para
       mejorar la eficiencia y la productividad de las reuniones.
-    image: ./conferencias/section-7.jpg
+    image: ../conferencias/section-7.jpg
   - heading: Sistema de Video con Seguimiento Automático de los Ponentes
     body: Los sistemas de video con seguimiento automático de los ponentes son
       soluciones tecnológicas diseñadas para mejorar la captura de video en

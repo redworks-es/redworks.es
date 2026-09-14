@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import { useTranslations, getLangFromUrl } from '../i18n/utils';
 
 interface Card {
   icon: string;
@@ -10,11 +11,13 @@ interface Props {
   cards: Card[];
 }
 const { cards } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section class="why container">
-  <p class="eyebrow">Por qué Redworks</p>
-  <h2>Razones para elegirnos</h2>
+  <p class="eyebrow">{t('why.eyebrow')}</p>
+  <h2>{t('why.heading')}</h2>
   <div class="cards">
     {
       cards.map((card) => (

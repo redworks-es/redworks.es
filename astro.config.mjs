@@ -5,7 +5,19 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://redworks.es',
   output: 'server',
-  integrations: [sitemap()],
+  i18n: {
+    locales: ['es', 'fr'],
+    defaultLocale: 'es',
+    routing: { prefixDefaultLocale: false },
+  },
+  integrations: [
+    sitemap({
+      i18n: {
+        defaultLocale: 'es',
+        locales: { es: 'es-ES', fr: 'fr-FR' },
+      },
+    }),
+  ],
   adapter: cloudflare({
     imageService: 'compile',
     // Under Vitest, Astro's getViteConfig() resolves the full dev config, which

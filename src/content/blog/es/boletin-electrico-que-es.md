@@ -2,7 +2,7 @@
 title: "Boletín eléctrico: qué es, cuándo lo necesitas y quién puede emitirlo"
 metaDescription: "El boletín eléctrico certifica que una instalación cumple la normativa vigente. Te explicamos qué es, cuándo es obligatorio y cómo se tramita en Madrid."
 excerpt: "El boletín eléctrico (o certificado de instalación) es el documento que acredita que tu instalación eléctrica cumple el Reglamento Electrotécnico de Baja Tensión. Sin él, la compañía eléctrica no puede dar de alta el suministro."
-heroImage: "../../assets/shared/services/electricidad-destacada.jpg"
+heroImage: "../../../assets/shared/services/electricidad-destacada.jpg"
 heroImageAlt: "Electricista revisando un cuadro eléctrico de baja tensión durante una instalación"
 publishDate: 2026-02-10
 relatedService: "electricidad"

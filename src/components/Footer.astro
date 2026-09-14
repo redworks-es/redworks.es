@@ -1,5 +1,9 @@
 ---
+import { useTranslations, localizePath, getLangFromUrl } from '../i18n/utils';
+
 const year = new Date().getFullYear();
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <footer class="site-footer">
@@ -8,25 +12,25 @@ const year = new Date().getFullYear();
       <p class="brand">Redworks Solutions</p>
       <dl>
         <div>
-          <dt>Dirección</dt>
+          <dt>{t('footer.direccion')}</dt>
           <dd>Calle José Echegaray, 14 · Edificio A2, planta 2, nave 8</dd>
         </div>
         <div>
-          <dt>Teléfono</dt>
+          <dt>{t('footer.telefono')}</dt>
           <dd><a href="tel:+34910527499">910 52 74 99</a></dd>
         </div>
       </dl>
     </div>
-    <nav aria-label="Legal">
+    <nav aria-label={t('footer.legal_aria')}>
       <ul class="legal-links">
-        <li><a href="/accesibilidad/">Accesibilidad</a></li>
-        <li><a href="/politica-de-privacidad/">Política de privacidad</a></li>
-        <li><a href="/terminos-y-condiciones/">Términos y condiciones</a></li>
+        <li><a href={localizePath('/accesibilidad/', lang)}>{t('footer.accesibilidad')}</a></li>
+        <li><a href={localizePath('/politica-de-privacidad/', lang)}>{t('footer.privacidad')}</a></li>
+        <li><a href={localizePath('/terminos-y-condiciones/', lang)}>{t('footer.terminos')}</a></li>
       </ul>
     </nav>
   </div>
   <div class="container copyright">
-    <p>Copyright {year} Redworks Solutions. Todos los derechos reservados.</p>
+    <p>Copyright {year} Redworks Solutions. {t('footer.rights')}</p>
   </div>
 </footer>
 

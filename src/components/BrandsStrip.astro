@@ -1,6 +1,10 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import { useTranslations, getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const brandImages = import.meta.glob<{ default: ImageMetadata }>(
   '../assets/shared/brands/*.{png,jpg,jpeg}',
@@ -21,11 +25,11 @@ const brands = Object.entries(brandImages)
 ---
 
 <section class="brands container">
-  <h2>Trabajamos con las mejores marcas</h2>
+  <h2>{t('brands.heading')}</h2>
   <div class="logos">
     {
       brands.map((brand) => (
-        <Image src={brand.image} alt={`Logo de ${brand.name}, marca con la que trabaja Redworks Solutions`} width={80} height={80} loading="lazy" />
+        <Image src={brand.image} alt={`Logo de ${brand.name}, ${t('brands.logo_alt_suffix')}`} width={80} height={80} loading="lazy" />
       ))
     }
   </div>

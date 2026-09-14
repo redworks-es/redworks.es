@@ -5,7 +5,7 @@ title: Electricidad y Energías Renovables en Madrid
 metaDescription: Empresa Instaladora de Electricidad y Energías Renovables en
   Madrid ✅Instalación eléctrica de baja tensión, placas y paneles solares
   ☎️910527499
-heroImage: ./electricidad/hero.jpg
+heroImage: ../electricidad/hero.jpg
 heroTitle: Empresa Instaladora de Electricidad y Energías Renovables en Madrid
 sections:
   - heading: Instalaciones eléctricas de baja tensión para empresas
@@ -14,7 +14,7 @@ sections:
       instaladora autorizada por la Comunidad de Madrid, nos encargamos del
       montaje, el mantenimiento y la tramitación del boletín eléctrico
       conforme al Reglamento Electrotécnico de Baja Tensión.
-    image: ./electricidad/section-0.jpg
+    image: ../electricidad/section-0.jpg
   - heading: Energía Renovable
     body: Comprometidos con la eficiencia energética y la sostenibilidad, en
       Redworks disponemos de los conocimientos y las capacidades necesarias para
@@ -24,7 +24,7 @@ sections:
       también nos permite realizar revisiones y comprobaciones del
       funcionamiento de las instalaciones, para asegurar que el rendimiento y
       eficiencia de los equipos sea el mayor posible.
-    image: ./electricidad/section-1.jpg
+    image: ../electricidad/section-1.jpg
 whyChooseUs:
   - icon: user-tie
     title: Experiencia y profesionalismo

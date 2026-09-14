@@ -1,0 +1,155 @@
+---
+export const prerender = true;
+
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import WhyChooseUs from '../../components/WhyChooseUs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import BrandsStrip from '../../components/BrandsStrip.astro';
+import FAQ from '../../components/FAQ.astro';
+import { faqPageSchema } from '../../lib/faqSchema';
+
+const HOME_FAQS = [
+  {
+    question: 'Quels services propose Redworks Solutions ?',
+    answer:
+      "Nous installons et entretenons des systèmes de télécommunications (réseaux, wifi, VoIP, visioconférence, sonorisation), de l'électricité basse tension, des systèmes de sécurité (CCTV et contrôle d'accès) et de l'énergie solaire photovoltaïque pour les entreprises à Madrid.",
+  },
+  {
+    question: 'Dans quelles zones intervient Redworks ?',
+    answer:
+      "Nous intervenons principalement à Madrid et dans son agglomération, avec des projets ponctuels dans le reste de l'Espagne selon les besoins du client.",
+  },
+  {
+    question: "Quelle est l'expérience de Redworks Solutions ?",
+    answer:
+      "Plus de 15 ans à installer et entretenir des systèmes de télécommunications, d'électricité et d'énergies renouvelables pour des entreprises de toutes tailles.",
+  },
+  {
+    question: 'Proposez-vous un devis sans engagement ?',
+    answer:
+      "Oui, nous étudions chaque projet et préparons un devis sans engagement adapté aux besoins concrets de votre entreprise avant de commencer toute installation.",
+  },
+];
+
+// Port-style codes, like the labels on a patch panel or breaker box — a structural
+// device that actually means something for an installer of this kind of equipment.
+const SERVICE_CODES: Record<string, string> = {
+  telecomunicaciones: 'NET',
+  'telefonia-voip': 'VOIP',
+  audiovisuales: 'A/V',
+  videoconferencias: 'VC',
+  megafonia: 'MEG',
+  conferencias: 'SALA',
+  'sistemas-informaticos': 'LAN',
+  'redes-wifi': 'WIFI',
+  seguridad: 'CCTV',
+  electricidad: 'ELEC',
+  paneles: 'FV',
+  'instalacion-electrica-de-baja-tension': 'BT',
+};
+
+const services = (await getCollection('services', ({ id }) => id.startsWith('fr/'))).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+const whyRedworks = [
+  {
+    icon: 'shield-alt',
+    title: 'Expérience',
+    body: "Plus de 15 ans d'expérience et une équipe certifiée.",
+  },
+  {
+    icon: 'check-circle',
+    title: 'Résultats',
+    body: 'Des professionnels spécialisés qui soignent chaque détail du projet.',
+  },
+  {
+    icon: 'headset',
+    title: 'Dévouement',
+    body: 'Des solutions sur mesure, adaptées aux besoins de votre entreprise.',
+  },
+];
+---
+
+<Layout
+  title="Entreprise Télécommunications et Électricité Madrid | Redworks"
+  description="Entreprise d'Installation de Systèmes de Télécommunications et d'Électricité à Madrid. Plus de 15 ans d'expérience. 910 52 74 99"
+  schema={[faqPageSchema(HOME_FAQS)]}
+>
+  <Hero title="Télécommunications et électricité pour votre entreprise à Madrid" eyebrow="Madrid · Installateur agréé" dark>
+    Plus de 15 ans à installer et entretenir des systèmes de télécommunications, d'électricité et d'énergies
+    renouvelables pour les entreprises.
+  </Hero>
+
+  <section class="container services">
+    <p class="eyebrow">Catalogue de services</p>
+    <h2>Onze lignes d'installation, une seule équipe</h2>
+    <div class="grid">
+      {
+        services.map((service) => (
+          <a
+            class="node"
+            data-category={service.data.category}
+            href={`/fr/${service.id.split('/')[1]}/`}
+          >
+            <span class="code">{SERVICE_CODES[service.id.split('/')[1]] ?? '—'}</span>
+            <span class="label">{service.data.navLabel}</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <WhyChooseUs cards={whyRedworks} />
+  <FAQ items={HOME_FAQS} title="Questions fréquentes" />
+  <CtaBand />
+  <BrandsStrip />
+</Layout>
+
+<style>
+  .services {
+    padding: 4rem 0 3.5rem;
+  }
+  .services h2 {
+    max-width: 18ch;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1px;
+    margin-top: 2.5rem;
+    background: var(--wire);
+    border: 1px solid var(--wire);
+  }
+  .node {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem 1.25rem;
+    background: var(--white);
+    color: var(--text);
+    border-top: 3px solid var(--blue);
+  }
+  .node[data-category='electricidad'] {
+    border-top-color: var(--red);
+  }
+  .node .code {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    color: var(--blue);
+  }
+  .node[data-category='electricidad'] .code {
+    color: var(--red);
+  }
+  .node .label {
+    font-weight: 600;
+    font-size: 0.98rem;
+  }
+  .node:hover {
+    background: var(--paper);
+    text-decoration: none;
+  }
+</style>

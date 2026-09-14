@@ -2,12 +2,12 @@
 export const prerender = true;
 
 import { getCollection } from 'astro:content';
-import ServicePage from '../templates/ServicePage.astro';
-import PageTemplate from '../templates/PageTemplate.astro';
+import ServicePage from '../../templates/ServicePage.astro';
+import PageTemplate from '../../templates/PageTemplate.astro';
 
 export async function getStaticPaths() {
-  const services = await getCollection('services', ({ id }) => id.startsWith('es/'));
-  const pages = await getCollection('pages', ({ id }) => id.startsWith('es/'));
+  const services = await getCollection('services', ({ id }) => id.startsWith('fr/'));
+  const pages = await getCollection('pages', ({ id }) => id.startsWith('fr/'));
   return [
     ...services.map((entry) => ({
       params: { slug: entry.id.split('/')[1] },
